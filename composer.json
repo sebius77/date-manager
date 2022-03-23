@@ -1,0 +1,22 @@
+{
+  "name": "sebius77/dateManager",
+  "description": "library for generating calendar",
+  "keywords": ["calendar", "weekly"],
+  "homepage": "https://github.com/sebius77/weekly-calendar-generation",
+  "license": "CECILL-C",
+  "authors": [
+    {
+      "name": "Sébastien Gaudin",
+      "email": "gebs.dev@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-4": { "Sebius77\\DateManager\\App": "" },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  }
+}
