@@ -1,6 +1,6 @@
 <?php
 
-namespace Sebius77\DateManager\App;
+namespace Sebius77\DateManager;
 
 use DateTime;
 

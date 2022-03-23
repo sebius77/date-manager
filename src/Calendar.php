@@ -1,11 +1,11 @@
 <?php
 
-namespace Sebius77\DateManager\App;
+namespace Sebius77\DateManager;
 
 use DateTime;
-use Sebius77\DateManager\App\DateManager;
-use Sebius77\DateManager\Config\Days;
-use Sebius77\DateManager\Config\Months;
+use Sebius77\DateManager\DateManager;
+use Sebius77\DateManager\Days;
+use Sebius77\DateManager\Months;
 
 class Calendar extends DateManager
 {

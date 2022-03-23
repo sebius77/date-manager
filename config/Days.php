@@ -1,6 +1,6 @@
 <?php
 
-namespace Sebius77\DateManager\Config;
+namespace Sebius77\DateManager;
 
 class Days {
     public static function getDays() {
