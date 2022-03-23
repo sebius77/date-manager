@@ -1,10 +1,8 @@
 <?php
 
-namespace Sebius77\DateManager\App\DateManager;
+namespace Sebius77\DateManager\App;
 
 use DateTime;
-use Sebius77\DateManager\Config\Days;
-use Sebius77\DateManager\Config\Months;
 
 abstract class DateManager
 {
@@ -16,9 +14,6 @@ abstract class DateManager
      */
     public function getFirstDayOfYear(?int $year): DateTime
     {
-        if (is_null($year)) {
-            $year = $this->getYear();
-        }
         return new \DateTime("{$year}-01-01");
     }
 

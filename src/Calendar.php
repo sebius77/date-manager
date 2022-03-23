@@ -1,9 +1,9 @@
 <?php
 
-namespace Sebius77\DateManager\App\Calendar;
+namespace Sebius77\DateManager\App;
 
 use DateTime;
-use Sebius77\DateManager\App\DateManager\DateManager;
+use Sebius77\DateManager\App\DateManager;
 use Sebius77\DateManager\Config\Days;
 use Sebius77\DateManager\Config\Months;
 
