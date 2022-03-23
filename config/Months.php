@@ -1,6 +1,6 @@
 <?php
 
-namespace Sebius77\DateManager;
+namespace Sebius77\DateManager\Config;
 
 class Months
 {
