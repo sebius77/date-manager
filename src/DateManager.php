@@ -1,6 +1,6 @@
 <?php
 
-namespace Sebius77\DateManager\Src;
+namespace Sebius77\DateManager\App;
 
 use DateTime;
 
@@ -22,23 +22,11 @@ abstract class DateManager
      */
     public function getFirstDayOfMonth(?int $year, ?int $monthNumber): DateTime
     {
-        if (is_null($year)) {
-            $year = $this->getYear();
-        }
-        if (is_null($monthNumber)) {
-            $monthNumber = $this->getMonthNumber();
-        }
         return new \DateTime("{$year}-{$monthNumber}-01");
     }
 
     public function getLastDayOfMonth(?int $year, ?int $monthNumber)
     {
-        if (is_null($year)) {
-            $year = $this->getYear();
-        }
-        if (is_null($monthNumber)) {
-            $monthNumber = $this->getMonthNumber();
-        }
         return (clone $this->getFirstDayOfMonth($year, $monthNumber))->modify(' +1 month -1 day');
     }
 
