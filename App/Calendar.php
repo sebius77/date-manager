@@ -22,11 +22,11 @@ class Calendar extends DateManager
     }
 
     /**
-     * Retourne un tableau représentant un mini calendrier sur 1 mois
+     * Retourne un tableau représentant un calendrier sur 1 mois
      * @Param $monthNumber  // date sélectionnée dans le calendrier
      * @Param $year // Indique s'il s'agit de la semaine actuelle, précédente ou future
      */
-    public function generateMiniCal($monthNumber = null, $year = null)
+    public function generateMonthCalendar(?int $monthNumber, ?int $year): array
     {
         $weeks = [];
         if (is_null($monthNumber)) {
@@ -64,7 +64,8 @@ class Calendar extends DateManager
         ];   
     }
 
-    public function generateWeekCalendar(DateTime $date) {
+    public function generateWeekCalendar(DateTime $date): array
+    {
         $weekDays = [];
         $days = $this->getDaysMapping();
         $mondayOfWeek = $this->getMondayOfWeekWithDate($date);
