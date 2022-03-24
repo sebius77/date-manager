@@ -26,7 +26,7 @@ class Calendar extends DateManager
      * @Param $monthNumber  // date sélectionnée dans le calendrier
      * @Param $year // Indique s'il s'agit de la semaine actuelle, précédente ou future
      */
-    public function generateMonthCalendar(?int $monthNumber, ?int $year): array
+    public function generateMonthCalendar(?int $monthNumber = null, ?int $year = null): array
     {
         $weeks = [];
         if (is_null($monthNumber)) {
@@ -64,8 +64,11 @@ class Calendar extends DateManager
         ];   
     }
 
-    public function generateWeekCalendar(DateTime $date): array
+    public function generateWeekCalendar(?DateTime $date = null): array
     {
+        if (is_null($date)) {
+            $date = new DateTime();
+        }
         $weekDays = [];
         $days = $this->getDaysMapping();
         $mondayOfWeek = $this->getMondayOfWeekWithDate($date);
