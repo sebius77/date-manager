@@ -144,7 +144,7 @@ abstract class DateManager
     public function getMonthString(DateTime $date)
     {
         foreach ($this->monthsMapping as $month) {
-            if (intval($date->format('n')) === $month['id']) {
+            if (intval($date->format('m')) === $month['id']) {
                 return $month['nom'];
             }   
         }
@@ -156,7 +156,7 @@ abstract class DateManager
     public function getMonthAlias(DateTime $date)
     {
         foreach ($this->monthsMapping as $month) {
-            if (intval($date->format('n')) === $month['id']) {
+            if (intval($date->format('m')) === $month['id']) {
                 return $month['alias'];
             }   
         }
