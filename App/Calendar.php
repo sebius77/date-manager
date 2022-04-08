@@ -82,44 +82,6 @@ class Calendar extends DateManager
         return $weekDays;
     }
 
-    /*
-    public function generateMiniCal()
-    {
-        $string = '';
-        $weeksNumber = $this->getWeeksNumberOfMonth();
-        $days = $this->getDaysMapping();
-        $firstWeek = $this->getFirstWeek();
-        $monday = $this->getMondayOfWeekWithDate($this->getFirstDayOfMonth());
-
-        $string .='<tr><th>LUN</th><th>MAR</th><th>MER</th><th>JEU</th><th>VEN</th><th>SAM</th><th>DIM</th></tr>';
-
-        $string .= '<tr id="week-' . $firstWeek . '">';
-        for ($i = 0; $i < $weeksNumber; $i++) {
-            foreach ($days as $k=>$day) {
-                $date = (clone $monday)->modify("+" . ($k + $i * 7) . " day");
-
-                $aaaammjj = $date->format('Y')
-                    . '-' . $date->format('m')
-                    . '-' . $date->format('d');
-            
-                if (intval($date->format('n')) !== intval($this->getMonthNumber())) {
-                    $string .= '<td id="day-'. $aaaammjj .'" class="minicalDay" style="color: gray;" onclick="selectDay(this)">'
-                        . $date->format('d') . '</td>';
-                } else {
-                    $string .= '<td id="day-'.$aaaammjj.'" class="minicalDay" style="color: black;" onclick="selectDay(this)">'
-                        . $date->format('d') . '</td>';
-                }
-
-                if ($k === 6) {
-                    $cloneDate = clone($date->modify('+ 1 week'));
-                    $string .= '</tr><tr id="week-' . ($cloneDate->format('W')). '" class="minicalWeek">';
-                }
-            }
-        }
-        return $string;
-    }
-    */
-
     /**
      * Get the value of givenDate
      */ 

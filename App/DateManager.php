@@ -135,7 +135,7 @@ abstract class DateManager
      */ 
     public function getMonthNumber(DateTime $date)
     {
-        return intval($date->format('n'));
+        return intval($date->format('m'));
     }
 
     /**
