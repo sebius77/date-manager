@@ -36,13 +36,13 @@ abstract class DateManager
     /**
      * Return the last day of month
      */
-    public function getLastDayOfMonth(?int $year, ?int $monthNumber)
+    public function getLastDayOfMonth(?int $year, ?int $monthNumber): DateTime
     {
         return (clone $this->getFirstDayOfMonth($year, $monthNumber))->modify(' +1 month -1 day');
     }
 
     /**
-     * Return the number of the first month week
+     * Return the number of the first month's week
      */
     public function getFirstWeek(?int $year, ?int $monthNumber): int
     {
@@ -112,7 +112,7 @@ abstract class DateManager
     /**
      * Get the value of dayNumber
      */ 
-    public function getDayNumber(DateTime $date)
+    public function getDayNumber(DateTime $date): int
     {
         return $date->format('d');
     }
@@ -120,7 +120,7 @@ abstract class DateManager
     /**
      * Get the value of dayString
      */ 
-    public function getDayString(DateTime $date)
+    public function getDayString(DateTime $date): string
     {
         foreach ($this->daysMapping as $day) {
             if (intval($date->format('N')) === $day['id']) {
