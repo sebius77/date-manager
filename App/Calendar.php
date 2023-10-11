@@ -4,47 +4,42 @@ namespace Sebius77\DateManager\App;
 
 use DateTime;
 use Sebius77\DateManager\App\DateManager;
-use Sebius77\DateManager\Config\Days;
-use Sebius77\DateManager\Config\Months;
 
 class Calendar extends DateManager
 {
-    protected Datetime $givenDate;
-    protected Datetime $currentDate;
-    protected int $year;
-
-    public function __construct(DateTime $date)
-    {
-        $this->givenDate = $date;
-        $this->daysMapping = Days::getDays();
-        $this->monthsMapping = Months::getMonths();
-        // Vérification si l'année correspond à l'année en cours, sinon Exception
-    }
-
     /**
-     * Retourne un tableau représentant un calendrier sur 1 mois
-     * @Param $monthNumber  // date sélectionnée dans le calendrier
-     * @Param $year // Indique s'il s'agit de la semaine actuelle, précédente ou future
+     * Return an array with a calendar on the month
+     * @Param $monthNumber
+     * @Param $year 
      */
-    public function generateMonthCalendar(?int $monthNumber = null, ?int $year = null): array
+    public function generateMonthCalendar($date = null): array
     {
         $weeks = [];
-        if (is_null($monthNumber)) {
-            $monthNumber = intval($this->getMonthNumber($this->givenDate));
+
+        if (is_null($date)) {
+            $date = new DateTime();
         }
 
-        if (is_null($year)) {
-            $year = intval($this->getYear($this->givenDate));
-        }
-
+        // Get monthNumber (1-12), Get year (XXXX);
+        $monthNumber = intval($this->getMonthNumber($date));
+        $year = intval($this->getYear($date));
+        
+        // Get The first Day of Month
         $date = new DateTime($year . '-' . $monthNumber . '-' . '01');
 
+        // Get The name of month (Janvier, Février, Mars, ...)
         $stringMonth = $this->getMonthString($date);
+
+        // Get The number of weeks for the month
         $weeksNumber = $this->getWeeksNumberOfMonth($year, $monthNumber);
         
+        // Get the days array
         $days = $this->getDaysMapping();
+
+        // Get the first month monday
         $mondayOfMonth = $this->getMondayOfWeekWithDate($date);
 
+        // Generate weeks of month
         for ($line = 0; $line < $weeksNumber; $line++) {
             foreach ($days as $k => $detail) {
                 $date = (clone $mondayOfMonth)->modify("+" . ($k + $line * 7) . " day");
@@ -64,6 +59,8 @@ class Calendar extends DateManager
         ];   
     }
 
+    // Generate a week array
+    // [ANNEE - MOIS - JOUR] = [id jour (id), nom du jour (name), alias du jour (Lun, Mar,...) (alias) ]
     public function generateWeekCalendar(?DateTime $date = null): array
     {
         if (is_null($date)) {
@@ -83,42 +80,18 @@ class Calendar extends DateManager
     }
 
     /**
-     * Get the value of givenDate
-     */ 
-    public function getGivenDate()
+     * Get the value of daysMapping
+     */
+    public function getDaysMapping()
     {
-        return $this->givenDate;
+        return $this->daysMapping;
     }
 
     /**
-     * Set the value of givenDate
-     *
-     * @return  self
-     */ 
-    public function setGivenDate($givenDate)
+     * Get the value of monthsMapping
+     */
+    public function getMonthsMapping()
     {
-        $this->givenDate = $givenDate;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of currentDate
-     */ 
-    public function getCurrentDate()
-    {
-        return $this->currentDate;
-    }
-
-    /**
-     * Set the value of currentDate
-     *
-     * @return  self
-     */ 
-    public function setCurrentDate($currentDate)
-    {
-        $this->currentDate = $currentDate;
-
-        return $this;
+        return $this->monthsMapping;
     }
 }

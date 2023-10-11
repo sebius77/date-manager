@@ -15,7 +15,7 @@ class Months
             [
                 'id'    =>  2,
                 'nom'   =>  'Février',
-                'alias' =>  'Mars'
+                'alias' =>  'Fév'
             ],
             [
                 'id'    =>  3,

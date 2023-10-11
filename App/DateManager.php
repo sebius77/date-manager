@@ -3,14 +3,22 @@
 namespace Sebius77\DateManager\App;
 
 use DateTime;
+use Sebius77\DateManager\Config\Days;
+use Sebius77\DateManager\Config\Months;
 
 abstract class DateManager
 {
-    protected array $daysMapping;
-    protected array $monthsMapping;
+    protected $daysMapping;
+    protected $monthsMapping;
 
+    public function __construct()
+    {
+        $this->daysMapping = Days::getDays();
+        $this->monthsMapping = Months::getMonths();
+    }
+    
     /**
-     * Retourne le premier jour de l'année
+     * Return the first day of year
      */
     public function getFirstDayOfYear(?int $year): DateTime
     {
@@ -18,20 +26,23 @@ abstract class DateManager
     }
 
     /**
-     * Retourne la date du premier jour du mois
+     * Return the first day of month
      */
     public function getFirstDayOfMonth(?int $year, ?int $monthNumber): DateTime
     {
         return new \DateTime("{$year}-{$monthNumber}-01");
     }
 
+    /**
+     * Return the last day of month
+     */
     public function getLastDayOfMonth(?int $year, ?int $monthNumber)
     {
         return (clone $this->getFirstDayOfMonth($year, $monthNumber))->modify(' +1 month -1 day');
     }
 
     /**
-     * Retourne le numéro de la première semaine du mois
+     * Return the number of the first month week
      */
     public function getFirstWeek(?int $year, ?int $monthNumber): int
     {
@@ -39,7 +50,7 @@ abstract class DateManager
     }
 
     /**
-     * Retourne la date du lundi de la semaine en fonction d'une date donnée
+     * Return date of the week's monday with a given date
      */
     public function getMondayofWeekWithDate(DateTime $date): DateTime
     {
@@ -50,7 +61,7 @@ abstract class DateManager
     }
 
     /**
-     * Retourne la date du lundi de la semaine en fonction d'un numéro de semaine
+     * Return date of week's monday with a week number
      */
     public function getMondayOfWeekWithWeekNumber(int $weekNumber, int $year): DateTime
     {
@@ -58,15 +69,15 @@ abstract class DateManager
         $monday = clone($firstDateYear);
         $day = intval($monday->format('w'));
 
-        // Dans le cas ou le 1er jour n'est pas un lundi
+        // If the first day of week is not a monday
         if ($day !== 1) {
             $monday->modify(' last monday');
         }
 
-        // On récupère la semaine du premier lundi
+        // Get the week of first monday
         $firstWeek = intval($monday->format('W'));
 
-        // Dans le cas ou la semaine n'est pas la première de l'année (Le jour 1 n'est pas un lundi)
+        // If the week is not first in the year (The day 1 is not a monday)
         if ($firstWeek !== 1) {
             $monday->modify(' +' . (intval($weekNumber)) . ' week');
         }
@@ -74,7 +85,7 @@ abstract class DateManager
     }
 
     /**
-     * Retourne le nombre de semaine du mois
+     * Return the number of month's week
      */
     public function getWeeksNumberOfMonth(?int $year, ?int $monthNumber) :int
     {
@@ -82,7 +93,7 @@ abstract class DateManager
         $end = $this->getLastDayOfMonth($year, $monthNumber);
         $cloneEnd = clone ($end);
 
-        // Dans le cas ou la date de fin serait contenu dans la 1ère semaine de l'année
+        // If the end date is in the first week of year
         if (intval($end->format('W')) === 1) {
             $cloneEnd->modify('- 1 week');
             $weekEnd = intval($cloneEnd->format('W')) + 1;
