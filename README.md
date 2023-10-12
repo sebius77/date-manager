@@ -1,7 +1,7 @@
 # date-manager
 application to manage dates
 
-* Class Calendar
+* Class Calendar hérite de DateManager
 
     - generateMonthCalendar(date $date) -----> To generate an array of month
 
@@ -16,6 +16,19 @@ application to manage dates
             'weeksNumber' => $weeksNumber,
 
             'weeks' => $weeks ($weeks[$line][$yearOfDay . '-' . $monthNumberOfDay . '-' . $day] = $day (dayNumber))
+        ]
+
+    - generateWeekcalendar(datetime $date) ----> To generate an array of Week
+
+        [
+
+            id => 1 à 7 (for monday at Sunday),
+
+            name => (Lundi, Mardi,...) french by default,
+
+            alias => (Lun, Mar),
+
+            date => (AAAA-MM-JJ)
         ]
 
 * Class DateManager

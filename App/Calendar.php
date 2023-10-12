@@ -74,7 +74,9 @@ class Calendar extends DateManager
             $dayNumber = $this->getDayNumber($date);
             $yearOfDay = $this->getYear($date);
             $monthOfDay = $this->getMonthNumber($date);
-            $weekDays[$yearOfDay . '-' . $monthOfDay . '-' . $dayNumber] = $detail;
+            $dayDate = $yearOfDay . '-' . $monthOfDay . '-' . $dayNumber;
+            $detail['date'] = $dayDate;
+            $weekDays[] = $detail;
         }
         return $weekDays;
     }
