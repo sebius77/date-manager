@@ -16,22 +16,27 @@ use Sebius77\DateManager\App\Calendar;
 
 require '../config/Days.php';
 require '../config/Months.php';
-require '../src/DateManager.php';
-require '../src/Calendar.php';
+require '../App/DateManager.php';
+require '../App/Calendar.php';
 
 $now = new DateTime();
-$minical = new Calendar();
+//$minical = new Calendar();
 
 /*
 $now = $now->modify('+1 month');
 $minical = new Calendar($now);
 */
 $date = new DateTime();
-$minical = new Calendar($date);
+//$minical = new Calendar($date);
+$calendar = new Calendar();
 
 //$calendrier = $minical->generateMiniCal(4, 2022);
 //die(var_dump($calendrier));
-$week = $minical->generateWeekCalendar($date);
-die(var_dump($week));
+//$week = $minical->generateWeekCalendar($date);
+//die(var_dump($week));
+
+$date = new Datetime('2023-10-12');
+
+print_r($calendar->generateWeekCalendar($date, 5));
 
 ?>

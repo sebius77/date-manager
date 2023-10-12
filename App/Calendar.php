@@ -78,7 +78,7 @@ class Calendar extends DateManager
             $dayDate = $yearOfDay . '-' . $monthOfDay . '-' . $dayNumber;
             $detail['date'] = $dayDate;
             $weekDays[] = $detail;
-            if ($atDay == $dayNumber) {
+            if ($atDay == $dayIndex + 1) {
                 return $weekDays;
             }
         }
