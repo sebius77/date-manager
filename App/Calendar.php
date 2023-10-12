@@ -61,7 +61,8 @@ class Calendar extends DateManager
 
     // Generate a week array
     // [ANNEE - MOIS - JOUR] = [id jour (id), nom du jour (name), alias du jour (Lun, Mar,...) (alias) ]
-    public function generateWeekCalendar(?DateTime $date = null): array
+    // $atDay Lundi: 1, Mardi: 2, Mercredi: 3, semaine jusqu'au jour X
+    public function generateWeekCalendar(?DateTime $date = null, $atDay = null): array
     {
         if (is_null($date)) {
             $date = new DateTime();
@@ -77,6 +78,9 @@ class Calendar extends DateManager
             $dayDate = $yearOfDay . '-' . $monthOfDay . '-' . $dayNumber;
             $detail['date'] = $dayDate;
             $weekDays[] = $detail;
+            if ($atDay == $dayNumber) {
+                return $weekDays;
+            }
         }
         return $weekDays;
     }
