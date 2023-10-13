@@ -87,7 +87,7 @@ abstract class DateManager
     /**
      * Return the number of month's week
      */
-    public function getWeeksNumberOfMonth(?int $year, ?int $monthNumber) :int
+    public function getWeekNumberOfMonth(?int $year, ?int $monthNumber) :int
     {
         $start = $this->getFirstDayOfMonth($year, $monthNumber);
         $end = $this->getLastDayOfMonth($year, $monthNumber);
@@ -106,7 +106,7 @@ abstract class DateManager
         if ($weeksNumber < 0) {
             $weeksNumber = intval($end->format('W')) + 1;
         }
-        return $weeksNumber;
+        return $weekNumber;
     }
 
     /**

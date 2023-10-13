@@ -39,7 +39,7 @@ application to manage dates
     - getFirstWeek(?int $year, ?int $monthNumber): int
     - getMondayofWeekWithDate(DateTime $date): DateTime
     - getMondayOfWeekWithWeekNumber(int $weekNumber, int $year): DateTime
-    - getWeeksNumberOfMonth(?int $year, ?int $monthNumber) :int
+    - getWeekNumberOfMonth(?int $year, ?int $monthNumber) :int
     - getDayNumber(DateTime $date)
     - function getDayString(DateTime $date): string
 
